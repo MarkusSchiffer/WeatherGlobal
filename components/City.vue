@@ -1,26 +1,33 @@
+<!-- © Markus Schiffer, June 2020 -->
+<!-- One of the more complicated parts of the project, this component stores one individual city. -->
+
 <template>
-  <div class="card" @click="toggleShow()">
+  <!-- This div represents the standard city picture and name always visible -->
+  <div v-if="!errored" class="card" @click="toggleShow()">
     <img :src="image" :alt="name" class="img-fluid">
     <h4 class="text-center">
       {{ displayName(name) }}
     </h4>
+    <!-- Shows the actual weather forecast, but only if the user toggled the city image. Attempts to use cached data to avoid repeatedly calling the API. -->
     <div v-if="show">
-      <div v-for="day in weather" :key="day.id" class="day m-2 border border-primary rounded">
-        <img :src="getWeatherIconString(day.weather_state_abbr)" :alt="day.weather_state_name">
-        <span>
-          <h5>{{ getDayOfWeek(day.applicable_date) }}</h5>
-          <p>{{ day.weather_state_name }}</p>
-        </span>
-      </div>
+      <forecast :cached="cached" :woeid="woeid" @cache="handleCache" />
     </div>
+  </div>
+  <!-- There was an API error loading the picture. Never had this problem. -->
+  <div v-else>
+    <p>Sorry, but it seems the API was unable to load the picture {{ errorMessage }}</p>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Forecast from '../components/Forecast.vue'
 
 export default {
   name: 'City',
+  components: {
+    Forecast
+  },
   props: {
     name: {
       // The name of the city.
@@ -31,44 +38,32 @@ export default {
       // Location of the city, used for APIs.
       type: Number,
       required: true
-    },
-    simple: {
-      // Which type of display to use, either simple cards or accordian.
-      type: Boolean,
-      default: false
     }
   },
   data () {
     return {
-      loadingImage: true,
-      image: null,
-      loadingWeather: true,
-      weather: null,
-      errored: false,
-      show: false
+      loadingImage: true, // True while the image is being loaded.
+      image: null, // The src text of the image to be used, from the API.
+      errored: false, // There was an error loading the image.
+      show: false, // True if the user wishes to see the forecast of this city.
+      errorMessage: '', // If there is an error message, it is saved in the variable.
+      cached: null // The cached weather forcast. Since the Forecast component is dis-mounted if show is false, cacheing its value improves performance.
     }
   },
   mounted () {
+    // First we fetch the picture from the API.
     const pathImage = 'https://api.teleport.org/api/urban_areas/slug:' + this.name + '/images/'
-    const pathForecast = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/' + this.woeid
     axios
       .get(pathImage)
       .then(response => (this.image = response.data.photos[0].image.web))
       .catch((error) => {
         this.errored = true
-        return Promise.reject(error)
+        this.errorMessage = error
       })
       .finally(() => (this.loadingImage = false))
-    axios
-      .get(pathForecast)
-      .then(response => (this.weather = response.data.consolidated_weather))
-      .catch((error) => {
-        this.errored = true
-        return Promise.reject(error)
-      })
-      .finally(() => (this.loadingWeather = false))
   },
   methods: {
+    // Display the city name with proper capitalization and no '-' characters
     // This was helpful: https://www.w3resource.com/javascript-exercises/javascript-string-exercise-9.php
     displayName (name) {
       const retVal = name.replace(/-/g, ' ')
@@ -76,34 +71,15 @@ export default {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
       })
     },
-    // Thanks to Samuel Liew https://stackoverflow.com/questions/17964170/get-the-weekday-from-a-date-object-or-date-string-using-javascript
-    getDayOfWeek (date) {
-      const dayOfWeek = new Date(date).getDay()
-      return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek]
-    },
-    getWeatherIconString (abbreviation) {
-      return require('../assets/weathericons/' + abbreviation + '.svg')
-    },
+    // Flips the show variable for the forecast, called on click.
     toggleShow () {
       this.show = !this.show
+    },
+    // If the Forecast component called the API, it sends its parent (this city) that fetched data.
+    // This way, if the user re-shows the forecast, we do not have to call the API again, and use cached data instead.
+    handleCache (data) {
+      this.cached = data
     }
   }
 }
 </script>
-
-<style scoped>
-.day {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-content: center;
-}
-.day > img {
-  width: 50%;
-  max-height: 5rem;
-}
-.day > span {
-  display: flex;
-  flex-direction: column;}
-</style>

@@ -1,0 +1,39 @@
+{
+    "allCities": [
+        [
+          { "name": "seattle", "woeid": 2490383 },
+          { "name": "los-angeles", "woeid": 2442047 },
+          { "name": "new-york", "woeid": 2459115 },
+          { "name": "rio-de-janeiro", "woeid": 455825 },
+          { "name": "toronto", "woeid": 4118 }
+        ],
+        [
+          { "name": "beijing", "woeid": 2151330 },
+          { "name": "tokyo", "woeid": 1118370 },
+          { "name": "shanghai", "woeid": 2151849 },
+          { "name": "singapore", "woeid": 1062617 },
+          { "name": "bangkok", "woeid": 1225448 }
+        ],
+        [
+          { "name": "saint-petersburg", "woeid": 2123260 },
+          { "name": "london", "woeid": 44418 },
+          { "name": "paris", "woeid": 615702 },
+          { "name": "berlin", "woeid": 638242 },
+          { "name": "barcelona", "woeid": 753692 }
+        ],
+        [
+          { "name": "dubai", "woeid": 1940345 },
+          { "name": "melbourne", "woeid": 1103816 },
+          { "name": "johannesburg", "woeid": 1582504 },
+          { "name": "cairo", "woeid": 1521894 },
+          { "name": "istanbul", "woeid": 2344116 }
+        ]
+      ],
+    "fewCities": [
+        { "name": "seattle", "woeid": 2490383 },
+        { "name": "new-york", "woeid": 2459115 },
+        { "name": "tokyo", "woeid": 1118370 },
+        { "name": "london", "woeid": 44418 },
+        { "name": "dubai", "woeid": 1940345 }
+    ]
+}

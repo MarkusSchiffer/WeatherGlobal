@@ -1,5 +1,10 @@
+<!-- © Markus Schiffer, June 2020 -->
+<!-- This component displays multiple cities. It is used (albeit differently) on both the home and cities pages. -->
+
 <template>
+  <!-- The default case, the parent wants all of the cities to be displayed. -->
   <div v-if="all" class="container mt-5">
+    <!-- The card that expands, holds all the cities in a region. -->
     <div v-for="(list, index) in allCities" :key="index" class="card text-secondary">
       <div v-b-toggle="getRegion(index)" class="card-header text-center">
         <img :src="getImage(index)" :alt="getRegion(index)" class="globe-image">
@@ -7,23 +12,25 @@
           {{ getRegion(index) }}
         </h3>
       </div>
+      <!-- The collapsible element which stores all cites in a given region. -->
       <b-collapse :id="getRegion(index)">
         <div v-for="city in list" :key="city.woeid" class="card-body">
-          <City :name="city.name" :woeid="city.woeid" :simple="true" />
+          <City :name="city.name" :woeid="city.woeid" />
         </div>
       </b-collapse>
     </div>
   </div>
+  <!-- The case where the parent just wants to see a few cities. -->
   <div v-else class="row p-2">
     <div v-for="city in fewCities" :key="city.woeid">
-      <City :name="city.name" :woeid="city.woeid" :simple="false" />
+      <City :name="city.name" :woeid="city.woeid" />
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
 import City from '../components/City.vue'
+import json from '../assets/cities.json'
 
 export default {
   name: 'CityGrid',
@@ -31,6 +38,7 @@ export default {
     City
   },
   props: {
+    // Whether to display all cities or just some. Defaults to all.
     all: {
       type: Boolean,
       default: true
@@ -38,49 +46,12 @@ export default {
   },
   data () {
     return {
-      loading: true,
-      citys: null,
-      errored: false,
-      allCities: [
-        [
-          { name: 'seattle', woeid: 2490383 },
-          { name: 'los-angeles', woeid: 2442047 },
-          { name: 'new-york', woeid: 2459115 },
-          { name: 'rio-de-janeiro', woeid: 455825 },
-          { name: 'toronto', woeid: 4118 }
-        ],
-        [
-          { name: 'beijing', woeid: 2151330 },
-          { name: 'tokyo', woeid: 1118370 },
-          { name: 'shanghai', woeid: 2151849 },
-          { name: 'singapore', woeid: 1062617 },
-          { name: 'bangkok', woeid: 1225448 }
-        ],
-        [
-          { name: 'saint-petersburg', woeid: 2123260 },
-          { name: 'london', woeid: 44418 },
-          { name: 'paris', woeid: 615702 },
-          { name: 'berlin', woeid: 638242 },
-          { name: 'barcelona', woeid: 753692 }
-        ],
-        [
-          { name: 'dubai', woeid: 1940345 },
-          { name: 'melbourne', woeid: 1103816 },
-          { name: 'johannesburg', woeid: 1582504 },
-          { name: 'cairo', woeid: 1521894 },
-          { name: 'istanbul', woeid: 2344116 }
-        ]
-      ],
-      fewCities: [
-        { name: 'seattle', woeid: 2490383 },
-        { name: 'new-york', woeid: 2459115 },
-        { name: 'tokyo', woeid: 1118370 },
-        { name: 'london', woeid: 44418 },
-        { name: 'dubai', woeid: 1940345 }
-      ]
+      allCities: json.allCities, // We need to read in the list of all cities.
+      fewCities: json.fewCities // We need just a few cities.
     }
   },
   methods: {
+    // Figures out the region of cities based on the list they are in.
     getRegion (index) {
       if (!this.all) {
         return 'Top Global'
@@ -97,6 +68,7 @@ export default {
       }
     },
     getImage (index) {
+      // Gets the correct global image based on list of images used.
       if (!this.all) {
         return null
       }
@@ -115,6 +87,7 @@ export default {
 }
 </script>
 
+<!-- All styling makes sure the accordions display nicely on all screen sizes. -->
 <style scoped>
 .globe-image {
   max-height: 7rem;

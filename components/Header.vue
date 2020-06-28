@@ -1,3 +1,6 @@
+<!-- © Markus Schiffer, June 2020 -->
+<!-- This is the site header. It uses Bootstap's special Vue.js elements for simple implementation -->
+
 <template>
   <header class="fix-offset">
     <b-navbar toggleable="md" type="dark" variant="secondary" fixed="top">
@@ -13,6 +16,7 @@
         WeatherGlobal
       </nuxt-link>
       <b-navbar-toggle target="nav-collapse" />
+      <!-- Make collapsable for small screens. -->
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <nuxt-link class="nav-link" to="/">
@@ -35,8 +39,9 @@
 
 <script>
 export default {
-  name: 'CGHeader',
+  name: 'Header',
   computed: {
+    // Helps the screen reader announce the current page.
     currentPage () {
       const path = this.$route.path
       if (path.includes('cities')) {
@@ -53,6 +58,7 @@ export default {
 }
 </script>
 
+<!-- This style accounts for bolding/white the current nav link -->
 <style scoped>
 .fix-offset {
   margin-bottom: 4.5rem;

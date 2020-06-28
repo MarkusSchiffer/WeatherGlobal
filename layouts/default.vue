@@ -1,3 +1,7 @@
+<!-- © Markus Schiffer, June 2020 -->
+<!-- This is the only layout needed for the whole site. Ensures the header is present,
+     and sets style rules for display-2 -->
+
 <template>
   <div>
     <CGHeader />
@@ -9,6 +13,7 @@
 import CGHeader from '~/components/Header.vue'
 
 export default {
+  name: 'DefaultLayout',
   components: {
     CGHeader
   }

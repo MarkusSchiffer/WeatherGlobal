@@ -13,7 +13,7 @@
           class="d-inline-block align-top"
           xmlns:svg="http://www.w3.org/2000/svg"
         >
-        WeatherGlobal
+        Weather-Global
       </nuxt-link>
       <b-navbar-toggle target="nav-collapse" />
       <!-- Make collapsable for small screens. -->

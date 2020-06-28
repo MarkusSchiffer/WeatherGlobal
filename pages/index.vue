@@ -4,7 +4,7 @@
 <template>
   <div class="container">
     <h2 class="text-center display-3 text-secondary">
-      Welcome to WeatherGlobal!
+      Welcome to Weather-Global!
     </h2>
     <img src="../static/cloud.svg" class="w-35 mx-auto d-block">
     <h3>

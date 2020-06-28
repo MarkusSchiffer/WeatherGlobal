@@ -6,7 +6,7 @@ All cars page: Allows the user to cycle through all cars, uses the API.
 Resources page: Page that provides links to other pages where more resources can be found.
 
 As I started to work on this project, I found I had a really hard time finding an API that was useful for what I wanted to do. My ideal choice of API (https://supercarsapi.docs.apiary.io/#) unfortunately
-only supported one car. I did some more research online and found that the standard API recommended for beginners was to a a weather project. It is for that reason who I came up with WeatherGlobal. I used 
+only supported one car. I did some more research online and found that the standard API recommended for beginners was to a a weather project. It is for that reason who I came up with Weather-Global. I used 
 three APIs. First, MetaWeather (https://www.metaweather.com/) for the weather forecasts. Next, I used Teleport (https://teleport.org/) for city images. Lastly, I used my own Python API to manage blog posts.
 
 This is the new structure of pages:

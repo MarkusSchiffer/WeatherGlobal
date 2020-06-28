@@ -1,4 +1,4 @@
-# WeatherGlobal
+# Weather-Global
 
 ## Build Setup
 

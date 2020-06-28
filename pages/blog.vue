@@ -31,7 +31,7 @@ export default {
   methods: {
     // Re-renders the display-blog, after enough time has passed for the backend to update the blog state.
     forceRender () {
-      setTimeout(() => (this.renderKey += 1), 500)
+      setTimeout(() => (this.renderKey += 1), 1000)
     }
   }
 }

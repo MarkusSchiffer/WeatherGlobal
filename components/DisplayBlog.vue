@@ -61,7 +61,7 @@ export default {
   mounted () {
     // Gets the blog posts.
     axios
-      .get('http://markusschiffer.pythonanywhere.com/get-posts')
+      .get('https://markusschiffer.pythonanywhere.com/get-posts')
       .then((response) => {
         if (this.unlimited) {
           this.currPosts = response.data.posts

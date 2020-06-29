@@ -3,9 +3,9 @@
 
 <template>
   <div class="mt-5">
-    <h2 class="display-2 text-center text-primary">
-      Choose a City:
-    </h2>
+    <h1 class="display-2 text-center text-primary">
+      {{ title }}
+    </h1>
     <CityGrid />
   </div>
 </template>
@@ -17,6 +17,19 @@ export default {
   name: 'Cities',
   components: {
     CityGrid
+  },
+  data () {
+    return {
+      title: 'Choose a City to View its Weather:'
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: 'Select a city to view its weather. Cities are grouped into Americas, Asia, Europe, and other Global. Just click the pictures and explore!' }
+      ]
+    }
   }
 }
 </script>

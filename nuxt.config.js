@@ -14,11 +14,18 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'Weather-Global is the number one place to learn about and discuss weather in big cities across the globe! View major global centers such as Dubai, Singapore, London, and New York, and chat with other users using the blog function! Also, recruit a potential software engineer for your firm!' },
+      { robot: 'index, follow' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    metaInfo: {
+      noscript: [
+        { innerHTML: 'This website requires JavaScript.' }
+      ],
+      title: 'Weather-Global: Discover and Discuss Global Weather'
+    }
   },
   /*
   ** Global CSS

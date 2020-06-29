@@ -3,9 +3,9 @@
 
 <template>
   <div class="container">
-    <h2 class="display-2 text-primary text-center">
-      Blog
-    </h2>
+    <h1 class="display-3 text-primary text-center">
+      {{ title }}
+    </h1>
     <!-- We need to re-render the page when a blog is posted, so the user can see instant results. -->
     <WriteBlog @handlePost="forceRender()" />
     <!-- Render key is a arbitrary number which informs display-blog to re-render when it becomes a different number -->
@@ -25,13 +25,22 @@ export default {
   },
   data () {
     return {
-      renderKey: 0
+      renderKey: 0,
+      title: 'Blog: Share, ask Questions, and More'
     }
   },
   methods: {
     // Re-renders the display-blog, after enough time has passed for the backend to update the blog state.
     forceRender () {
       setTimeout(() => (this.renderKey += 1), 1000)
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: 'Welcome to the best community for global weather discussion! No account needed.' }
+      ]
     }
   }
 }

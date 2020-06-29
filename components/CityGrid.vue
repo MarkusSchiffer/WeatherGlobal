@@ -8,7 +8,7 @@
     <div v-for="(list, index) in allCities" :key="index" class="card text-secondary">
       <div v-b-toggle="getRegion(index)" class="card-header text-center">
         <img :src="getImage(index)" :alt="getRegion(index)" class="globe-image">
-        <h3 class="display-1">
+        <h3 class="display-4">
           {{ getRegion(index) }}
         </h3>
       </div>
@@ -98,35 +98,29 @@ export default {
   align-items: center;
 }
 .card-header > img {
-  margin-left: 2rem;
-  margin-right: 4rem;
-}
-.display-1 {
-  font-size: 3rem;
+  margin-left: 1rem;
+  margin-right: 2rem;
 }
 
 @media (min-width: 768px) {
-  .display-1 {
-    font-size: 4.5rem;
-  }
   .card-header > img {
     margin-left: 5rem;
     margin-right: 7rem;
   }
   .globe-image {
-    max-height: 10rem;
+    max-height: 8rem;
   }
 }
 @media (min-width: 992px) {
-  .display-1 {
-    font-size: 6rem;
-  }
   .globe-image {
     max-height: 15rem;
   }
   .card-header > img {
     margin-left: 8rem;
     margin-right: 10rem;
+  }
+  .globe-image {
+    max-height: 10rem;
   }
 }
 </style>

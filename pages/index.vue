@@ -3,22 +3,22 @@
 
 <template>
   <div class="container">
-    <h2 class="text-center display-3 text-secondary">
-      Welcome to Weather-Global!
-    </h2>
+    <h1 class="text-center display-3 text-secondary">
+      {{ title }}
+    </h1>
     <img src="../static/cloud.svg" class="w-35 mx-auto d-block">
-    <h3>
+    <h2>
       <nuxt-link to="/cities" class="display-4 text-center text-secondary">
         Catch a Glipse of Weather Around the World:
       </nuxt-link>
-    </h3>
+    </h2>
     <!-- Set all to false to only select a few cities. -->
     <city-grid :all="false" />
-    <h3 class="mt-5">
+    <h2 class="mt-3">
       <nuxt-link to="/blog" class="display-4 text-center text-secondary">
         Latest Thoughts on the Weather...
       </nuxt-link>
-    </h3>
+    </h2>
     <!-- Set unlimited to false to only show the three newest blog posts. -->
     <display-blog :unlimited="false" />
   </div>
@@ -33,12 +33,19 @@ export default {
   components: {
     CityGrid,
     DisplayBlog
+  },
+  data () {
+    return {
+      title: 'Welcome to Weather-Global!' // Page title (meta).
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: "Weather-Global Home Page: Welcome! Let's see what's new!" }
+      ]
+    }
   }
 }
 </script>
-
-<style scoped>
-.w-35 {
-  width: 35%;
-}
-</style>

@@ -12,12 +12,12 @@
           <h3 class="card-title display-4">
             {{ post.title }}
           </h3>
-          <h4 class="card-subtitle">
+          <h4 class="card-subtitle display-5">
             {{ post.author }} posted at {{ post.time }}
           </h4>
         </div>
         <div class="card-body">
-          <p class="card-text">
+          <p class="card-text lead">
             {{ post.content }}
           </p>
         </div>
@@ -83,4 +83,7 @@ export default {
   width: 100%;
   display: block;
 }
+/* h3 {
+  font-weight: bold;
+} */
 </style>

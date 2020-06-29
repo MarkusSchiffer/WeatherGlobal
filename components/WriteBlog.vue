@@ -7,7 +7,7 @@
     Add a post:
   </b-button>
   <!-- The form for a new blog. -->
-  <form v-else ref="new.blog" class="jumbotron pt-4" @submit.prevent="getFormValues">
+  <form v-else ref="new.blog" class="jumbotron pt-4" @submit="getFormValues">
     <!-- Close button so that the user can close the interface if they want too. -->
     <button type="button" class="close" aria-label="Close" @click="toggleHide()">
       <span aria-hidden="true">&times;</span>
@@ -80,7 +80,7 @@ export default {
           alert('Blog failed to post, API error: ' + error)
         })
       this.$refs['new.blog'].reset() // clear the form upon posting.
-      this.toggleHide() // hide the form interface upon posting, so the user can see the update.
+      setTimeout(() => (this.toggleHide()), 20) // hide the form interface upon posting, so the user can see the update (needed delay in order for reset to work)
       this.$emit('handlePost') // Event that tells the parent to refresh the page so that the new post is automatically displayed.
     }
   }

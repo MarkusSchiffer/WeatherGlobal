@@ -74,7 +74,7 @@ export default {
       const query = '?title=' + title + '&author=' + author + '&time=' + time + '&content=' + content
       query.replace(/ /g, '+')
       axios
-        .get('https://cors-anywhere.herokuapp.com/http://markusschiffer.pythonanywhere.com/new-post' + query)
+        .get('https://markusschiffer.pythonanywhere.com/new-post' + query)
         .catch((error) => {
           this.errored = true
           alert('Blog failed to post, API error: ' + error)

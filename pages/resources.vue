@@ -10,7 +10,7 @@
     <div class="jumbotron">
       <img src="../static/markus.jpg" alt="Picture of the author.">
       <div class="m-4">
-        I'm Markus Schiffer. I created this site! I'm a UW CS student in the Allen School, and I live in the greater Seattle area. I have an intrest in computer security and systems programming. Some of my skills include Java, C++, Python, Vue,js, React.js, Ruby, Bootstrap, and Sass. If you like what you saw here, please don't hesitate to reach out! I'm always excited to hear about internship and job offers! My email is markus.mobx@gmail.com. Please check out my portfolio, it has some of my other projects as well the source code for this site!
+        I'm Markus Schiffer. I created this site! I'm a UW CS student in the Allen School, and living in the greater Seattle area. I'm interested in computer security and systems programming. My skills include Java, C++, Python, Vue.js, React.js, Ruby, Rust, SQL, ASP.NET C#, Bootstrap, and Sass. If you like what you saw here, please don't hesitate to reach out! I'm always excited to hear about internship and job offers! My email is markus.mbox@gmail.com. Check out my portfolio, it has some of my other projects as well the source code for this site!
         Thanks, Markus.
         <a href="https://drive.google.com/drive/u/0/folders/1ZHAzCGLB-XGfB65qFPXec0q3UUrEL-wN">My portfolio</a>
       </div>
